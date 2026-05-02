@@ -31,8 +31,9 @@ just clean            # Remove all build artifacts
 
 ### Key Files
 
-- **`Containerfile`** — Defines the base image (currently `ghcr.io/ublue-os/bazzite:stable`) and invokes `build.sh`.
+- **`Containerfile`** — Defines the base image (currently `ghcr.io/ublue-os/bazzite-dx:stable`), copies `services/` into `/usr/lib/systemd/user/`, and invokes `build.sh`.
 - **`build_files/build.sh`** — The main customization script. Add `dnf5 install` calls here for packages, `systemctl enable` for services.
+- **`services/`** — Custom user-level systemd unit files copied directly into the image at `/usr/lib/systemd/user/`.
 - **`Justfile`** — All local build, run, lint, and format recipes.
 - **`.github/workflows/build.yml`** — CI: builds and pushes the OCI image on push to `main`, PRs, daily schedule, and manual dispatch. Signs with Cosign.
 - **`.github/workflows/build-disk.yml`** — Optional CI: builds bootable disk images for amd64/arm64; can upload to S3.
