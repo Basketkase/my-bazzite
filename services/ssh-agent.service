@@ -1,0 +1,7 @@
+[Unit]
+Description=SSH Agent
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/ssh-agent -D -a %t/ssh-agent.socket

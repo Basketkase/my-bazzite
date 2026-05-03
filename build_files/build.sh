@@ -10,7 +10,14 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # remove kde plasma
-dnf5 remove -y plasma-workspace plasma-* kde-*
+dnf5 remove -y  \
+    plasma-workspace \
+    plasma-*    \
+    kde-*       \
+    kf6-*       \
+    kwin*       \
+    breeze*
+dnf5 autoremove -y
 
 dnf5 -y copr enable avengemedia/dms
 
@@ -19,32 +26,22 @@ dnf5 -y install						\
 		niri						\
 		dms							\
 		xwayland-satellite			\
-		xdg-desktop-portal-gtk		\
-		xdg-desktop-portal-gnome	\
-		gnome-keyring				\
-		mako						\
-		polkit-kde
+		xdg-desktop-portal-gnome
 
 # My software
 dnf5 -y install						\
 		kitty						\
 		nautilus					\
-		fuzzel
-
-
-# Use a COPR Example:
-#
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
+		blueman						\
+		pavucontrol
 
 # Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
 dnf5 -y copr disable avengemedia/dms
 
-#### Example for enabling a System Unit File
 
 systemctl enable podman.socket
 
-systemctl --global add-wants niri.service dms
-systemctl --global add-wants niri.service mako.service
-systemctl --global add-wants niri.service plasma-polkit-agent.service
+install -Dm644 /ctx/ssh-agent-env.conf /etc/skel/.config/environment.d/ssh-agent.conf
+
+systemctl --global add-wants graphical-session.target dms
+systemctl --global add-wants graphical-session.target ssh-agent.service
