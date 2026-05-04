@@ -14,14 +14,16 @@ dnf5 remove -y \
     plasma-workspace \
     plasma-*    \
     kde-*       \
-    kf6-*       \
     kwin*       \
     breeze*
 
 dnf5 autoremove -y
 
+rm -f /usr/share/wayland-sessions/plasma-steamos-wayland-oneshot.desktop
+
 dnf5 -y copr enable avengemedia/dms
 dnf5 -y copr enable avengemedia/danklinux
+dnf5 -y copr enable yalter/niri
 
 # Niri and DMS install with dependencies
 dnf5 -y install						\
@@ -30,7 +32,10 @@ dnf5 -y install						\
 		xwayland-satellite			\
 		xdg-desktop-portal-gnome	\
 		greetd						\
-		dms-greeter
+		dms-greeter					\
+		cups-pk-helper				\
+		python3-mutagen				\
+		cava
 
 # My software
 dnf5 -y install						\
@@ -43,6 +48,7 @@ dnf5 -y install						\
 # Disable COPRs so they don't end up enabled on the final image:
 dnf5 -y copr disable avengemedia/dms
 dnf5 -y copr disable avengemedia/danklinux
+dnf5 -y copr disable yalter/niri
 
 # Configure greetd with DankGreeter
 install -Dm644 /dev/stdin /etc/greetd/config.toml <<'EOF'
