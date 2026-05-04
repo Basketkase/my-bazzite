@@ -1,0 +1,13 @@
+[Unit]
+Description=Idle and suspend screen locker
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=swayidle -w \
+    timeout 300 'swaylock -f' \
+    before-sleep 'swaylock -f'
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

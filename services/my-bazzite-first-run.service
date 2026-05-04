@@ -1,0 +1,12 @@
+[Unit]
+Description=my-bazzite First Run Setup
+ConditionPathExists=%h/.config/my-bazzite-setup-pending
+After=dms.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/my-bazzite-first-run
+RemainAfterExit=no
+
+[Install]
+WantedBy=graphical-session.target

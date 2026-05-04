@@ -45,12 +45,27 @@ dnf5 -y install						\
 		nautilus					\
 		blueman						\
 		pavucontrol					\
-		papirus-icon-theme
+		papirus-icon-theme			\
+		swaylock					\
+		swayidle
 
 # Disable COPRs so they don't end up enabled on the final image:
 dnf5 -y copr disable avengemedia/dms
 dnf5 -y copr disable avengemedia/danklinux
 dnf5 -y copr disable yalter/niri
+
+# Create dedicated greeter user for DankGreeter
+install -Dm644 /dev/stdin /usr/lib/sysusers.d/dms-greeter.conf <<'EOF'
+u greeter 767 "DMS Greeter" /var/cache/dms-greeter -
+EOF
+
+# Create greeter cache directory owned by greeter user
+install -Dm644 /dev/stdin /usr/lib/tmpfiles.d/dms-greeter.conf <<'EOF'
+d /var/cache/dms-greeter 0750 greeter greeter -
+EOF
+
+# Copy DMS PAM assets to fix fingerprint auth at greeter
+cp /usr/share/quickshell/dms/assets/pam/* /usr/lib/pam.d/
 
 # Configure greetd with DankGreeter
 install -Dm644 /dev/stdin /etc/greetd/config.toml <<'EOF'
@@ -58,7 +73,7 @@ install -Dm644 /dev/stdin /etc/greetd/config.toml <<'EOF'
 vt = 1
 
 [default_session]
-user = "greetd"
+user = "greeter"
 command = "dms-greeter --command niri-session"
 EOF
 
@@ -77,6 +92,11 @@ systemctl enable greetd
 systemctl enable podman.socket
 
 install -Dm644 /ctx/ssh-agent-env.conf /etc/skel/.config/environment.d/ssh-agent.conf
+install -Dm755 /ctx/first-run.sh /usr/local/bin/my-bazzite-first-run
+install -Dm755 /ctx/setup.sh /usr/local/bin/my-bazzite-setup
+install -Dm644 /dev/null /etc/skel/.config/my-bazzite-setup-pending
 
 systemctl --global add-wants graphical-session.target dms
+systemctl --global add-wants graphical-session.target swayidle.service
 systemctl --global add-wants graphical-session.target ssh-agent.service
+systemctl --global enable my-bazzite-first-run.service
