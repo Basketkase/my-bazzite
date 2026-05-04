@@ -10,7 +10,7 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # remove kde plasma
-dnf5 remove -y --exclude=plasma-login-manager \
+dnf5 remove -y \
     plasma-workspace \
     plasma-*    \
     kde-*       \
@@ -18,16 +18,19 @@ dnf5 remove -y --exclude=plasma-login-manager \
     kwin*       \
     breeze*
 
-dnf5 autoremove -y --exclude=plasma-login-manager
+dnf5 autoremove -y
 
 dnf5 -y copr enable avengemedia/dms
+dnf5 -y copr enable avengemedia/danklinux
 
 # Niri and DMS install with dependencies
 dnf5 -y install						\
 		niri						\
 		dms							\
 		xwayland-satellite			\
-		xdg-desktop-portal-gnome
+		xdg-desktop-portal-gnome	\
+		greetd						\
+		dms-greeter
 
 # My software
 dnf5 -y install						\
@@ -38,8 +41,19 @@ dnf5 -y install						\
 
 # Disable COPRs so they don't end up enabled on the final image:
 dnf5 -y copr disable avengemedia/dms
+dnf5 -y copr disable avengemedia/danklinux
 
+# Configure greetd with DankGreeter
+install -Dm644 /dev/stdin /etc/greetd/config.toml <<'EOF'
+[terminal]
+vt = 1
 
+[default_session]
+user = "greeter"
+command = "dms-greeter --command niri-session"
+EOF
+
+systemctl enable greetd
 systemctl enable podman.socket
 
 install -Dm644 /ctx/ssh-agent-env.conf /etc/skel/.config/environment.d/ssh-agent.conf
