@@ -42,7 +42,6 @@ dnf5 -y install						\
 		blueman						\
 		pavucontrol					\
 		papirus-icon-theme			\
-		swaylock					\
 		swayidle
 
 dnf5 -y copr disable avengemedia/dms
