@@ -35,7 +35,9 @@ dnf5 -y install						\
 		dms-greeter					\
 		cups-pk-helper				\
 		python3-mutagen				\
-		cava
+		cava						\
+		matugen						\
+		kf6-kimageformats
 
 # My software
 dnf5 -y install						\

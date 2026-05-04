@@ -1,6 +1,16 @@
-# image-template
+# my-bazzite
 
-This repository is meant to be a template for building your own custom [bootc](https://github.com/bootc-dev/bootc) image. This template is the recommended way to make customizations to any image published by the Universal Blue Project.
+A custom bootc image based on [Bazzite](https://bazzite.gg/), replacing KDE/Plasma with [Niri](https://github.com/YaLTeR/niri) and [DankMaterialShell](https://danklinux.com/).
+
+## First Boot Setup
+
+After switching to this image and rebooting, run the following to sync the DankGreeter login screen with your DMS theme and settings:
+
+```bash
+dms greeter sync
+```
+
+This sets up ACL permissions and symlinks so the greeter can access your DMS configuration. It requires privilege escalation and only needs to be run once per user.
 
 # Community
 
