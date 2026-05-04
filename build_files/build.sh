@@ -37,7 +37,8 @@ dnf5 -y install						\
 		kitty						\
 		nautilus					\
 		blueman						\
-		pavucontrol
+		pavucontrol					\
+		papirus-icon-theme
 
 # Disable COPRs so they don't end up enabled on the final image:
 dnf5 -y copr disable avengemedia/dms
@@ -51,6 +52,17 @@ vt = 1
 [default_session]
 user = "greeter"
 command = "dms-greeter --command niri-session"
+EOF
+
+# Set Papirus as default icon theme for GTK apps
+install -Dm644 /dev/stdin /etc/gtk-3.0/settings.ini <<'EOF'
+[Settings]
+gtk-icon-theme-name=Papirus
+EOF
+
+install -Dm644 /dev/stdin /etc/gtk-4.0/settings.ini <<'EOF'
+[Settings]
+gtk-icon-theme-name=Papirus
 EOF
 
 systemctl enable greetd
