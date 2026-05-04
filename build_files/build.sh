@@ -92,8 +92,8 @@ systemctl enable greetd
 systemctl enable podman.socket
 
 install -Dm644 /ctx/ssh-agent-env.conf /etc/skel/.config/environment.d/ssh-agent.conf
-install -Dm755 /ctx/first-run.sh /usr/local/bin/my-bazzite-first-run
-install -Dm755 /ctx/setup.sh /usr/local/bin/my-bazzite-setup
+install -Dm755 /ctx/first-run.sh /usr/bin/my-bazzite-first-run
+install -Dm755 /ctx/setup.sh /usr/bin/my-bazzite-setup
 install -Dm644 /dev/null /etc/skel/.config/my-bazzite-setup-pending
 
 systemctl --global add-wants graphical-session.target dms
