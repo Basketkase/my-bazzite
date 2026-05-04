@@ -10,14 +10,15 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # remove kde plasma
-dnf5 remove -y  \
+dnf5 remove -y --exclude=plasma-login-manager \
     plasma-workspace \
     plasma-*    \
     kde-*       \
     kf6-*       \
     kwin*       \
     breeze*
-dnf5 autoremove -y
+
+dnf5 autoremove -y --exclude=plasma-login-manager
 
 dnf5 -y copr enable avengemedia/dms
 
