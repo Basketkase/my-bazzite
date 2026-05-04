@@ -50,7 +50,7 @@ install -Dm644 /dev/stdin /etc/greetd/config.toml <<'EOF'
 vt = 1
 
 [default_session]
-user = "greeter"
+user = "greetd"
 command = "dms-greeter --command niri-session"
 EOF
 
