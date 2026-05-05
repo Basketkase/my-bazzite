@@ -41,8 +41,7 @@ dnf5 -y install						\
 		nautilus					\
 		blueman						\
 		pavucontrol					\
-		papirus-icon-theme			\
-		swayidle
+		papirus-icon-theme
 
 dnf5 -y copr disable avengemedia/dms
 dnf5 -y copr disable avengemedia/danklinux
@@ -94,6 +93,5 @@ install -Dm755 /ctx/setup.sh /usr/bin/my-bazzite-setup
 install -Dm644 /dev/null /etc/skel/.config/my-bazzite-setup-pending
 
 systemctl --global add-wants graphical-session.target dms
-systemctl --global add-wants graphical-session.target swayidle.service
 systemctl --global add-wants graphical-session.target ssh-agent.service
 systemctl --global enable my-bazzite-first-run.service
