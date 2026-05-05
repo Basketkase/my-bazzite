@@ -59,8 +59,32 @@ install -Dm644 /dev/stdin /usr/lib/tmpfiles.d/dms-greeter.conf <<'EOF'
 d /var/cache/dms-greeter 0750 greeter greeter -
 EOF
 
-# DMS PAM assets (fixes fingerprint auth at greeter)
+# DMS PAM assets (fingerprint auth for lock screen)
 cp /usr/share/quickshell/dms/assets/pam/* /usr/lib/pam.d/
+
+# greetd PAM config — use pam_unix directly instead of system-auth to prevent
+# fprintd from hijacking the auth conversation when fingerprints are enrolled
+install -Dm644 /dev/stdin /etc/pam.d/greetd <<'EOF'
+#%PAM-1.0
+auth       required    pam_unix.so
+-auth      optional    pam_gnome_keyring.so
+auth       include     postlogin
+
+account    required    pam_sepermit.so
+account    required    pam_nologin.so
+account    include     system-auth
+
+password   include     system-auth
+
+session    required    pam_selinux.so close
+session    required    pam_loginuid.so
+session    required    pam_selinux.so open
+session    optional    pam_keyinit.so force revoke
+session    required    pam_namespace.so
+session    include     system-auth
+-session   optional    pam_gnome_keyring.so auto_start
+session    include     postlogin
+EOF
 
 # greetd
 install -Dm644 /dev/stdin /etc/greetd/config.toml <<'EOF'
