@@ -41,7 +41,8 @@ dnf5 -y install						\
 		nautilus					\
 		blueman						\
 		pavucontrol					\
-		papirus-icon-theme
+		papirus-icon-theme			\
+		breeze-cursor-theme
 
 dnf5 -y copr disable avengemedia/dms
 dnf5 -y copr disable avengemedia/danklinux
@@ -75,11 +76,13 @@ EOF
 install -Dm644 /dev/stdin /etc/gtk-3.0/settings.ini <<'EOF'
 [Settings]
 gtk-icon-theme-name=Papirus
+gtk-cursor-theme-name=Breeze
 EOF
 
 install -Dm644 /dev/stdin /etc/gtk-4.0/settings.ini <<'EOF'
 [Settings]
 gtk-icon-theme-name=Papirus
+gtk-cursor-theme-name=Breeze
 EOF
 
 # System services
