@@ -41,6 +41,7 @@ dnf5 -y install						\
 # My software
 dnf5 -y install						\
 		kitty						\
+		fuzzel						\
 		nautilus					\
 		blueman						\
 		pavucontrol					\
