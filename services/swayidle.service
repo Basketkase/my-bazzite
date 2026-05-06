@@ -1,0 +1,13 @@
+[Unit]
+Description=Idle manager
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=swayidle -w \
+    timeout 300 'hyprlock' \
+    before-sleep 'hyprlock & sleep 1'
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

@@ -14,11 +14,16 @@ dnf5 remove -y \
 dnf5 autoremove -y
 
 rm -f /usr/share/wayland-sessions/plasma-steamos-wayland-oneshot.desktop
+rm -f /usr/share/wayland-sessions/gamescope-session.desktop
+rm -f /usr/share/wayland-sessions/gamescope-session-steam.desktop
+rm -f /usr/share/wayland-sessions/gnome.desktop
+rm -f /usr/share/wayland-sessions/gnome-wayland.desktop
 
 ### Install Packages
 
 dnf5 -y copr enable avengemedia/dms
 dnf5 -y copr enable yalter/niri
+dnf5 -y copr enable solopasha/hyprland
 
 # Niri and DMS with dependencies
 dnf5 -y install						\
@@ -40,10 +45,13 @@ dnf5 -y install						\
 		blueman						\
 		pavucontrol					\
 		papirus-icon-theme			\
-		breeze-cursor-theme
+		breeze-cursor-theme			\
+		hyprlock					\
+		swayidle
 
 dnf5 -y copr disable avengemedia/dms
 dnf5 -y copr disable yalter/niri
+dnf5 -y copr disable solopasha/hyprland
 
 ### Configure
 
@@ -66,6 +74,8 @@ systemctl enable podman.socket
 
 # User session defaults
 install -Dm644 /ctx/ssh-agent-env.conf /etc/skel/.config/environment.d/ssh-agent.conf
+install -Dm644 /ctx/hyprlock.conf /etc/skel/.config/hypr/hyprlock.conf
 
 systemctl --global add-wants graphical-session.target dms
+systemctl --global add-wants graphical-session.target swayidle.service
 systemctl --global add-wants graphical-session.target ssh-agent.service
