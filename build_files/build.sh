@@ -16,6 +16,7 @@ dnf5 autoremove -y
 ### Install Packages
 
 dnf5 -y copr enable avengemedia/dms
+dnf5 -y copr enable avengemedia/danklinux
 dnf5 -y copr enable yalter/niri
 dnf5 -y copr enable solopasha/hyprland
 
@@ -47,6 +48,7 @@ dnf5 -y install						\
 		swayidle
 
 dnf5 -y copr disable avengemedia/dms
+dnf5 -y copr disable avengemedia/danklinux
 dnf5 -y copr disable yalter/niri
 dnf5 -y copr disable solopasha/hyprland
 
