@@ -13,12 +13,6 @@ dnf5 remove -y \
 
 dnf5 autoremove -y
 
-rm -f /usr/share/wayland-sessions/plasma-steamos-wayland-oneshot.desktop
-rm -f /usr/share/wayland-sessions/gamescope-session.desktop
-rm -f /usr/share/wayland-sessions/gamescope-session-steam.desktop
-rm -f /usr/share/wayland-sessions/gnome.desktop
-rm -f /usr/share/wayland-sessions/gnome-wayland.desktop
-
 ### Install Packages
 
 dnf5 -y copr enable avengemedia/dms
@@ -27,15 +21,17 @@ dnf5 -y copr enable solopasha/hyprland
 
 # Niri and DMS with dependencies
 dnf5 -y install						\
+		gdm							\
 		niri						\
-		dms							\
 		xwayland-satellite			\
 		xdg-desktop-portal-gnome	\
-		gdm							\
+		dms							\
 		cups-pk-helper				\
-		python3-mutagen				\
 		cava						\
 		matugen						\
+		cliphist					\
+		dsearch						\
+		qt6-multimedia				\
 		kf6-kimageformats
 
 # My software
@@ -56,6 +52,22 @@ dnf5 -y copr disable solopasha/hyprland
 
 ### Configure
 
+# Remove extra desktop files
+rm -f /usr/share/wayland-sessions/plasma-steamos-wayland-oneshot.desktop
+rm -f /usr/share/wayland-sessions/gamescope-session.desktop
+rm -f /usr/share/wayland-sessions/gamescope-session-steam.desktop
+rm -f /usr/share/wayland-sessions/gnome.desktop
+rm -f /usr/share/wayland-sessions/gnome-wayland.desktop
+
+# Remove unused skel configuration
+rm -f /etc/skel/.config/kcminputrc
+
+# bootc install configuration
+install -Dm644 /dev/stdin /usr/lib/bootc/install/00-default.toml <<'EOF'
+[install]
+root-fs-type = "btrfs"
+EOF
+
 # GTK icon theme
 install -Dm644 /dev/stdin /etc/gtk-3.0/settings.ini <<'EOF'
 [Settings]
@@ -69,13 +81,15 @@ gtk-icon-theme-name=Papirus
 gtk-cursor-theme-name=Breeze
 EOF
 
-# System services
-systemctl enable gdm
-systemctl enable podman.socket
+# Hyprlock default config
+install -Dm644 /ctx/hyprlock.conf /etc/xdg/hypr/hyprlock.conf
 
 # User session defaults
 install -Dm644 /ctx/ssh-agent-env.conf /etc/skel/.config/environment.d/ssh-agent.conf
-install -Dm644 /ctx/hyprlock.conf /etc/skel/.config/hypr/hyprlock.conf
+
+# System services
+systemctl enable gdm
+systemctl enable podman.socket
 
 systemctl --global add-wants graphical-session.target dms
 systemctl --global add-wants graphical-session.target swayidle.service
