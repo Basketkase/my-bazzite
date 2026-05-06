@@ -31,7 +31,7 @@ dnf5 -y install						\
 		matugen						\
 		cliphist					\
 		dsearch						\
-		qt6-multimedia				\
+		qt6-qtmultimedia			\
 		kf6-kimageformats
 
 # My software
@@ -91,6 +91,6 @@ install -Dm644 /ctx/ssh-agent-env.conf /etc/skel/.config/environment.d/ssh-agent
 systemctl enable gdm
 systemctl enable podman.socket
 
-systemctl --global add-wants graphical-session.target dms
-systemctl --global add-wants graphical-session.target swayidle.service
-systemctl --global add-wants graphical-session.target ssh-agent.service
+systemctl --global add-wants niri.service dms
+systemctl --global add-wants niri.service swayidle.service
+systemctl --global add-wants niri.service ssh-agent.service
