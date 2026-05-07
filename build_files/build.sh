@@ -45,7 +45,9 @@ dnf5 -y install						\
 		papirus-icon-theme			\
 		breeze-cursor-theme			\
 		hyprlock					\
-		swayidle
+		swayidle					\
+		playerctl					\
+		brightnessctl
 
 dnf5 -y copr disable avengemedia/dms
 dnf5 -y copr disable avengemedia/danklinux
