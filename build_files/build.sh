@@ -98,6 +98,11 @@ install -Dm644 /ctx/hyprlock.conf /etc/xdg/hypr/hyprlock.conf
 # User session defaults
 install -Dm644 /ctx/ssh-agent-env.conf /etc/skel/.config/environment.d/ssh-agent.conf
 
+# Swayidle default config (users can edit ~/.config/swayidle/config.env to change timeout)
+install -Dm644 /dev/stdin /etc/skel/.config/swayidle/config.env <<'EOF'
+LOCK_TIMEOUT=300
+EOF
+
 # System services
 systemctl enable gdm
 systemctl enable podman.socket

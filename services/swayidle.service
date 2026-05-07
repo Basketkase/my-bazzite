@@ -4,9 +4,9 @@ PartOf=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=swayidle -w \
-    timeout 300 'hyprlock' \
-    before-sleep 'hyprlock & sleep 1'
+Environment=LOCK_TIMEOUT=300
+EnvironmentFile=-%h/.config/swayidle/config.env
+ExecStart=swayidle -w timeout ${LOCK_TIMEOUT} hyprlock before-sleep "hyprlock & sleep 1"
 Restart=on-failure
 
 [Install]
