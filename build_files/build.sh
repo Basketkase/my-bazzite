@@ -35,19 +35,22 @@ dnf5 -y install						\
 		qt6-qtmultimedia			\
 		kf6-kimageformats
 
-# My software
+# Desktop support software
 dnf5 -y install						\
-		kitty						\
-		fuzzel						\
-		nautilus					\
-		blueman						\
-		pavucontrol					\
 		papirus-icon-theme			\
 		breeze-cursor-theme			\
 		hyprlock					\
 		swayidle					\
 		playerctl					\
 		brightnessctl
+
+# My software
+dnf5 -y install						\
+		kitty						\
+		fuzzel						\
+		nautilus					\
+		pavucontrol
+
 
 dnf5 -y copr disable avengemedia/dms
 dnf5 -y copr disable avengemedia/danklinux
