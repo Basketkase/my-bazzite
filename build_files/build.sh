@@ -42,7 +42,14 @@ dnf5 -y install						\
 		hyprlock					\
 		swayidle					\
 		playerctl					\
-		brightnessctl
+		brightnessctl				\
+		gvfs-udisks2				\
+		gvfs-mtp					\
+		gvfs-gphoto2				\
+		gvfs-smb					\
+		gvfs-fuse					\
+		tumbler						\
+		file-roller
 
 # My software
 dnf5 -y install						\
