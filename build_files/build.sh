@@ -43,11 +43,11 @@ dnf5 -y install						\
 		swayidle					\
 		playerctl					\
 		brightnessctl				\
-		gvfs-udisks2				\
 		gvfs-mtp					\
 		gvfs-gphoto2				\
 		gvfs-smb					\
 		gvfs-fuse					\
+		gvfs-archive				\
 		tumbler						\
 		file-roller
 
