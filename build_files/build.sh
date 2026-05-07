@@ -52,6 +52,10 @@ dnf5 -y copr disable avengemedia/danklinux
 dnf5 -y copr disable yalter/niri
 dnf5 -y copr disable solopasha/hyprland
 
+# Disable terra-mesa repo: its gpgkey uses a file:// path that bootc-image-builder
+# can't resolve when building ISO/disk images. Packages are already in the image.
+sed -i 's/^enabled=1/enabled=0/' /etc/yum.repos.d/terra-mesa.repo
+
 ### Configure
 
 # Remove extra desktop files
