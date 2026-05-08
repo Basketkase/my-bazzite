@@ -45,6 +45,9 @@ install -Dm644 /dev/stdin /usr/lib/bootc/install/00-default.toml <<'EOF'
 root-fs-type = "btrfs"
 EOF
 
+# Restrict KDE-only autostart apps from launching in other sessions
+echo "OnlyShowIn=KDE;" >> /etc/xdg/autostart/org.kde.xwaylandvideobridge.desktop
+
 # Niri default config
 install -Dm644 /ctx/niri-config.kdl /etc/niri/config.kdl
 
