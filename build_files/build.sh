@@ -41,8 +41,6 @@ dnf5 -y install						\
 		breeze-cursor-theme			\
 		hyprlock					\
 		swayidle					\
-		playerctl					\
-		brightnessctl				\
 		gvfs-mtp					\
 		gvfs-gphoto2				\
 		gvfs-smb					\
@@ -101,6 +99,9 @@ EOF
 
 # Hyprlock default config
 install -Dm644 /ctx/hyprlock.conf /etc/xdg/hypr/hyprlock.conf
+
+# Niri default config
+install -Dm644 /ctx/niri-config.kdl /etc/niri/config.kdl
 
 # User session defaults
 install -Dm644 /ctx/ssh-agent-env.conf /etc/skel/.config/environment.d/ssh-agent.conf
