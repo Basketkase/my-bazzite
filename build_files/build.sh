@@ -22,11 +22,6 @@ dnf5 -y install						\
 		qt6-qtmultimedia			\
 		kf6-kimageformats
 
-# Desktop support software
-dnf5 -y install						\
-		papirus-icon-theme			\
-		breeze-cursor-theme
-
 # My software
 dnf5 -y install						\
 		kitty						\
@@ -54,19 +49,6 @@ rm -f /usr/share/wayland-sessions/gnome-wayland.desktop
 install -Dm644 /dev/stdin /usr/lib/bootc/install/00-default.toml <<'EOF'
 [install]
 root-fs-type = "btrfs"
-EOF
-
-# GTK icon theme
-install -Dm644 /dev/stdin /etc/gtk-3.0/settings.ini <<'EOF'
-[Settings]
-gtk-icon-theme-name=Papirus
-gtk-cursor-theme-name=Breeze
-EOF
-
-install -Dm644 /dev/stdin /etc/gtk-4.0/settings.ini <<'EOF'
-[Settings]
-gtk-icon-theme-name=Papirus
-gtk-cursor-theme-name=Breeze
 EOF
 
 # Niri default config
