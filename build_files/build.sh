@@ -36,14 +36,8 @@ dnf5 -y copr disable yalter/niri
 # can't resolve when building ISO/disk images. Packages are already in the image.
 sed -i 's/^enabled=1/enabled=0/' /etc/yum.repos.d/terra-mesa.repo
 
-### Configure
 
-# Remove extra desktop files
-rm -f /usr/share/wayland-sessions/plasma-steamos-wayland-oneshot.desktop
-rm -f /usr/share/wayland-sessions/gamescope-session.desktop
-rm -f /usr/share/wayland-sessions/gamescope-session-steam.desktop
-rm -f /usr/share/wayland-sessions/gnome.desktop
-rm -f /usr/share/wayland-sessions/gnome-wayland.desktop
+### Configure
 
 # bootc install configuration
 install -Dm644 /dev/stdin /usr/lib/bootc/install/00-default.toml <<'EOF'
