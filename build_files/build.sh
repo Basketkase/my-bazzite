@@ -40,7 +40,6 @@ dnf5 -y install						\
 		papirus-icon-theme			\
 		breeze-cursor-theme			\
 		hyprlock					\
-		swayidle					\
 		gvfs-mtp					\
 		gvfs-gphoto2				\
 		gvfs-smb					\
@@ -105,16 +104,11 @@ install -Dm644 /ctx/niri-config.kdl /etc/niri/config.kdl
 
 # User session defaults
 install -Dm644 /ctx/ssh-agent-env.conf /etc/skel/.config/environment.d/ssh-agent.conf
-
-# Swayidle default config (users can edit ~/.config/swayidle/config.env to change timeout)
-install -Dm644 /dev/stdin /etc/skel/.config/swayidle/config.env <<'EOF'
-LOCK_TIMEOUT=300
-EOF
+install -Dm644 /ctx/dms-settings.json /etc/skel/.config/DankMaterialShell/settings.json
 
 # System services
 systemctl enable sddm
 systemctl enable podman.socket
 
 systemctl --global add-wants niri.service dms
-systemctl --global add-wants niri.service swayidle.service
 systemctl --global add-wants niri.service ssh-agent.service
