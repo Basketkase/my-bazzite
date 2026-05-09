@@ -365,6 +365,7 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+space hotkey-overlay-title="App Launcher: Toggle" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Mod+O repeat=false  hotkey-overlay-title="Dashboard: Toggle"    { spawn "dms" "ipc" "call" "dash" "toggle" ""; }
     Super+Ctrl+Q cooldown-ms=500 hotkey-overlay-title="Lock Screen" { spawn "hyprlock"; }
     XF86AudioMedia { spawn "dms" "ipc" "call" "settings" "open"; }
 
@@ -389,9 +390,6 @@ binds {
 
     XF86MonBrightnessUp   allow-when-locked=true hotkey-overlay-title="Brightness Up (10%)"   { spawn "dms" "ipc" "call" "brightness" "increment" "10" ""; }
     XF86MonBrightnessDown allow-when-locked=true hotkey-overlay-title="Brightness Down (10%)" { spawn "dms" "ipc" "call" "brightness" "decrement" "10" ""; }
-
-    // Open/close the DMS dashboard.
-    Mod+O repeat=false hotkey-overlay-title="Dashboard: Toggle" { spawn "dms" "ipc" "call" "dash" "toggle" ""; }
 
     Mod+Q repeat=false { close-window; }
 
