@@ -1,5 +1,5 @@
 {
   "customPowerActionLock": "hyprlock",
-  "loginctlLockIntegration": true,
+  "loginctlLockIntegration": false,
   "configVersion": 5
 }

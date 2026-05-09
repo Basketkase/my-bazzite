@@ -40,6 +40,7 @@ dnf5 -y install						\
 		papirus-icon-theme			\
 		breeze-cursor-theme			\
 		hyprlock					\
+		swayidle					\
 		gvfs-mtp					\
 		gvfs-gphoto2				\
 		gvfs-smb					\
@@ -111,4 +112,5 @@ systemctl enable sddm
 systemctl enable podman.socket
 
 systemctl --global add-wants niri.service dms
+systemctl --global add-wants niri.service swayidle.service
 systemctl --global add-wants niri.service ssh-agent.service
