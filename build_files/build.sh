@@ -103,6 +103,10 @@ install -Dm644 /ctx/hyprlock.conf /etc/xdg/hypr/hyprlock.conf
 # Niri default config
 install -Dm644 /ctx/niri-config.kdl /etc/niri/config.kdl
 
+# User systemd services
+install -Dm644 /ctx/ssh-agent.service /usr/lib/systemd/user/ssh-agent.service
+install -Dm644 /ctx/swayidle.service /usr/lib/systemd/user/swayidle.service
+
 # User session defaults
 install -Dm644 /ctx/ssh-agent-env.conf /etc/skel/.config/environment.d/ssh-agent.conf
 install -Dm644 /ctx/dms-settings.json /etc/skel/.config/DankMaterialShell/settings.json
