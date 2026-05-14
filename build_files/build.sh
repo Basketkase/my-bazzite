@@ -14,7 +14,6 @@ dnf5 install -y					\
 		kitty
 
 # KDE customizations I want
-dnf copr enable infinality/kwin-effects-better-blur-dx
-dnf install kwin-effects-better-blur-dx
-
-dnf copr disable infinality/kwin-effects-better-blur-dx
+dnf5 copr enable -y infinality/kwin-effects-better-blur-dx
+dnf5 install -y kwin-effects-better-blur-dx
+dnf5 copr disable infinality/kwin-effects-better-blur-dx
