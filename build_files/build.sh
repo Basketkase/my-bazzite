@@ -11,7 +11,9 @@ set -ouex pipefail
 
 # Programs I want
 dnf5 install -y					\
-		kitty
+		kitty					\
+		Lightly
+
 
 # KDE customizations I want
 dnf5 copr enable -y infinality/kwin-effects-better-blur-dx
