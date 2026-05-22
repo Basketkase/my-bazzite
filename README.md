@@ -1,16 +1,7 @@
 # my-bazzite
 
-A custom bootc image based on [Bazzite](https://bazzite.gg/), replacing KDE/Plasma with [Niri](https://github.com/YaLTeR/niri) and [DankMaterialShell](https://danklinux.com/).
+A custom bootc image based on [Bazzite](https://bazzite.gg/) (GNOME), adding [Niri](https://github.com/YaLTeR/niri) as a Wayland tiling compositor alongside [DankMaterialShell](https://danklinux.com/) and [PaperWM](https://github.com/paperwm/PaperWM).
 
-## First Boot Setup
-
-After switching to this image and rebooting, run the following to sync the DankGreeter login screen with your DMS theme and settings:
-
-```bash
-dms greeter sync
-```
-
-This sets up ACL permissions and symlinks so the greeter can access your DMS configuration. It requires privilege escalation and only needs to be run once per user.
 
 # Community
 
