@@ -35,4 +35,4 @@ dnf5 -y copr disable yalter/niri
 
 
 # Start DMS with Niri
-systemctl --user add-wants niri.service dms
+systemctl --global add-wants niri.service dms
