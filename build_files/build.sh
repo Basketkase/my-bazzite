@@ -11,11 +11,28 @@ set -ouex pipefail
 
 # Programs I want
 dnf5 install -y					\
-		kitty					\
-		Lightly
+		kitty
+
+# Install Niri/DMS as alternative to gnome
+dnf5 -y copr enable avengemedia/dms
+dnf5 -y copr enable avengemedia/danklinux
+dnf5 -y copr enable yalter/niri
+
+dnf5 -y install								\
+				niri						\
+				dms							\
+				xwayland-satellite			\
+				xdg-desktop-portal-gnome	\
+				cava						\
+				matugen						\
+				cliphist					\
+				dsearch
 
 
-# KDE customizations I want
-dnf5 copr enable -y infinality/kwin-effects-better-blur-dx
-dnf5 install -y kwin-effects-better-blur-dx
-dnf5 copr disable infinality/kwin-effects-better-blur-dx
+dnf5 -y copr disable avengemedia/dms
+dnf5 -y copr disable avengemedia/danklinux
+dnf5 -y copr disable yalter/niri
+
+
+# Start DMS with Niri
+systemctl --user add-wants niri.service dms
