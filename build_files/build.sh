@@ -18,6 +18,8 @@ mkdir -p /usr/share/gnome-shell/extensions/paperwm@paperwm.github.com
 cp -r "${PAPERWM_DIR}"/. /usr/share/gnome-shell/extensions/paperwm@paperwm.github.com/
 rm -rf /tmp/paperwm.zip /tmp/paperwm-extract
 
+# YADM for dotfile management
+curl -fLo /usr/local/bin/yadm https://github.com/yadm-dev/yadm/raw/master/yadm && chmod a+x /usr/local/bin/yadm
 
 # Programs I want
 dnf5 install -y					\
