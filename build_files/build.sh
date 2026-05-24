@@ -23,11 +23,15 @@ curl -fLo /usr/local/bin/yadm https://github.com/yadm-dev/yadm/raw/master/yadm &
 
 # Programs I want
 dnf5 install -y					\
-		kitty
+		kitty					\
+		fish
 
 # Mullvad VPN client
+# Pre-create the install dir because /opt is a symlink in OSTree images and cpio can't mkdir over it
+mkdir -p "/opt/Mullvad VPN"
 dnf5 config-manager addrepo --from-repofile=https://repository.mullvad.net/rpm/stable/mullvad.repo
 dnf5 install -y mullvad-vpn
+systemctl enable mullvad-daemon mullvad-early-boot-blocking
 
 # Install Niri/DMS as alternative to gnome
 dnf5 -y copr enable avengemedia/dms
@@ -52,3 +56,6 @@ dnf5 -y copr disable yalter/niri
 
 # Start DMS with Niri
 systemctl --global add-wants niri.service dms
+
+# Default shell
+useradd -D -s /usr/bin/fish
