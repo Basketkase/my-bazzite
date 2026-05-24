@@ -25,6 +25,10 @@ curl -fLo /usr/local/bin/yadm https://github.com/yadm-dev/yadm/raw/master/yadm &
 dnf5 install -y					\
 		kitty
 
+# Mullvad VPN client
+dnf5 config-manager addrepo --from-repofile=https://repository.mullvad.net/rpm/stable/mullvad.repo
+dnf5 install -y mullvad-vpn
+
 # Install Niri/DMS as alternative to gnome
 dnf5 -y copr enable avengemedia/dms
 dnf5 -y copr enable avengemedia/danklinux
