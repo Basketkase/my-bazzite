@@ -3,7 +3,7 @@ name: Build container image
 on:
   pull_request:
   schedule:
-    - cron: '05 10 * * *'  # 10:05am UTC everyday
+    - cron: '05 10 * * 5'  # 10:05am UTC every Friday
   push:
     paths-ignore:
       - '**/README.md'
