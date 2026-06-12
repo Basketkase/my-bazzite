@@ -25,29 +25,3 @@ curl -fLo /usr/bin/yadm https://github.com/yadm-dev/yadm/raw/master/yadm && chmo
 dnf5 install -y					\
 		kitty
 
-# Install Niri/DMS as alternative to gnome
-dnf5 -y copr enable avengemedia/dms
-dnf5 -y copr enable avengemedia/danklinux
-dnf5 -y copr enable yalter/niri
-
-dnf5 -y install								\
-				niri						\
-				dms							\
-				xwayland-satellite			\
-				xdg-desktop-portal-gnome	\
-				cava						\
-				matugen						\
-				cliphist					\
-				dsearch
-
-
-dnf5 -y copr disable avengemedia/dms
-dnf5 -y copr disable avengemedia/danklinux
-dnf5 -y copr disable yalter/niri
-
-
-# Start DMS with Niri
-systemctl --global add-wants niri.service dms
-
-# Default shell
-useradd -D -s /usr/bin/fish
