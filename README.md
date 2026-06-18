@@ -1,6 +1,6 @@
 # my-bazzite
 
-A custom bootc image based on [Bazzite](https://bazzite.gg/) (GNOME), adding [Niri](https://github.com/YaLTeR/niri) as a Wayland tiling compositor alongside [DankMaterialShell](https://danklinux.com/) and [PaperWM](https://github.com/paperwm/PaperWM).
+A custom bootc image based on [Bazzite](https://bazzite.gg/) (GNOME), adding yadm for dotfiles and [PaperWM](https://github.com/paperwm/PaperWM) for scrolling/tiling within gnome.
 
 
 # Community
