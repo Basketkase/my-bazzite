@@ -23,7 +23,4 @@ curl -fLo /usr/bin/yadm https://github.com/yadm-dev/yadm/raw/master/yadm && chmo
 
 # Programs I want
 dnf5 install -y					\
-		kitty					\
-		neovim					\
-		python3-neovim
-
+		kitty
